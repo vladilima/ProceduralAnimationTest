@@ -9,6 +9,7 @@ position = Vector2(1088, 600)
 zoom = Vector2(0.5, 0.5)
 
 [node name="Fish" parent="." instance=ExtResource("2_x3o0u")]
+FollowsMouse = false
 
 [node name="Fish2" parent="." instance=ExtResource("2_x3o0u")]
 BodyColor = Color(0, 0.459042, 0.401229, 1)
