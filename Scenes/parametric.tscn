@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://dq462k448anlf"]
+
+[ext_resource type="Script" path="res://Scripts/parametric.gd" id="1_yq786"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cvq77"]
+radius = 100.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y21gy"]
+
+[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_ibt82"]
+
+[node name="Parametric" type="Node2D"]
+script = ExtResource("1_yq786")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(568, 307)
+shape = SubResource("CircleShape2D_cvq77")
+debug_color = Color(1, 1, 1, 0)
+
+[node name="Dot 1" type="CollisionShape2D" parent="CollisionShape2D"]
+position = Vector2(0, -100)
+shape = SubResource("CircleShape2D_y21gy")
+debug_color = Color(1, 0.00999999, 0.00999999, 0.419608)
+
+[node name="Dot 2" type="CollisionShape2D" parent="CollisionShape2D"]
+position = Vector2(0, 100)
+shape = SubResource("CircleShape2D_y21gy")
+debug_color = Color(0, 0.554427, 0.907078, 0.419608)
+
+[node name="Arrow" type="CollisionShape2D" parent="CollisionShape2D"]
+scale = Vector2(5, 5)
+shape = SubResource("SeparationRayShape2D_ibt82")
+debug_color = Color(1, 0.1, 0, 0.419608)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(568, 309)
+zoom = Vector2(2, 2)

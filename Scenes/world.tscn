@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://d31c5gtowpsxr"]
+
+[ext_resource type="PackedScene" uid="uid://bscn8bo3ud3s1" path="res://Scenes/fish.tscn" id="2_x3o0u"]
+
+[node name="World" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1088, 600)
+zoom = Vector2(0.5, 0.5)
+
+[node name="Fish" parent="." instance=ExtResource("2_x3o0u")]
+
+[node name="Fish2" parent="." instance=ExtResource("2_x3o0u")]
+BodyColor = Color(0, 0.459042, 0.401229, 1)
+
+[node name="Fish3" parent="." instance=ExtResource("2_x3o0u")]
+BodyColor = Color(0.574614, 0.321649, 9.62615e-08, 1)
+
+[node name="Fish4" parent="." instance=ExtResource("2_x3o0u")]
+BodyColor = Color(0.0392157, 0.894118, 0.721569, 1)
+
+[node name="Fish5" parent="." instance=ExtResource("2_x3o0u")]
+BodyColor = Color(0.71283, 0.113731, 0.231628, 1)
+
+[node name="Fish6" parent="." instance=ExtResource("2_x3o0u")]
+BodyColor = Color(0.502741, 0.154067, 0.816568, 1)

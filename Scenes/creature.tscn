@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqrimdt5to733"]
+
+[ext_resource type="Script" path="res://Scripts/creature.gd" id="1_vg0jb"]
+[ext_resource type="Texture2D" uid="uid://bi5t22r2c2k15" path="res://Resources/eye.png" id="2_21osr"]
+
+[node name="Creature" type="Node2D"]
+script = ExtResource("1_vg0jb")
+FollowsMouse = false
+BodyColor = Color(1, 0, 0, 1)
+PointAmount = 20
+SegmentSize = Array[float]([48.0, 64.0, 35.0, 35.0, 35.0, 35.0, 35.0, 35.0, 35.0, 32.0, 32.0, 29.0, 29.0, 26.0, 26.0, 23.0, 20.0, 17.0, 14.0, 11.0, 8.0, 5.0])
+
+[node name="Points" type="Node" parent="."]
+
+[node name="Anchor" type="Marker2D" parent="Points"]
+position = Vector2(0, 400)
+
+[node name="Point" type="Marker2D" parent="Points"]
+position = Vector2(-256, 408)
+
+[node name="Shape" type="Polygon2D" parent="."]
+
+[node name="Outline" type="Line2D" parent="."]
+closed = true
+width = 5.0
+antialiased = true
+
+[node name="Line" type="Line2D" parent="."]
+visible = false
+
+[node name="Eyes" type="Node2D" parent="."]
+scale = Vector2(0.03, 0.03)
+
+[node name="Eye1" type="Sprite2D" parent="Eyes"]
+position = Vector2(-1066.67, -1066.67)
+texture = ExtResource("2_21osr")
+
+[node name="Eye2" type="Sprite2D" parent="Eyes"]
+position = Vector2(-1066.67, 1066.67)
+texture = ExtResource("2_21osr")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
