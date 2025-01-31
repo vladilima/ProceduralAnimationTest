@@ -1,0 +1,69 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0t4edwdkw6ty"]
+
+[ext_resource type="Script" path="res://Scripts/lizard.gd" id="1_nyyi4"]
+[ext_resource type="PackedScene" uid="uid://bgri4rsalbs7q" path="res://Scenes/tests/IK_Limb.tscn" id="2_s1uh7"]
+[ext_resource type="Texture2D" uid="uid://bi5t22r2c2k15" path="res://Resources/eye.png" id="2_vcpxw"]
+
+[sub_resource type="Curve" id="Curve_uvf0o"]
+min_value = 0.1
+max_value = 64.0
+bake_resolution = 80
+_data = [Vector2(0, 5.71758), 0.0, 1488.66, 0, 0, Vector2(0.117925, 58.3824), 0.0, 0.0, 0, 0, Vector2(0.183962, 39.4231), 0.0, 0.0, 0, 0, Vector2(0.259434, 50.6582), 163.753, 163.753, 0, 0, Vector2(0.509434, 55.5736), -110.271, -165.407, 0, 0, Vector2(0.683962, 23.9747), -129.017, -129.017, 0, 0, Vector2(1, 3.61098), -21.2666, 0.0, 0, 0]
+point_count = 7
+
+[node name="Lizard" type="Node2D"]
+script = ExtResource("1_nyyi4")
+BodyColor = Color(0, 0.503575, 0.0228123, 1)
+SegmentLength = 10
+CreatureWidth = SubResource("Curve_uvf0o")
+
+[node name="Points" type="Node" parent="."]
+
+[node name="Anchor" type="Marker2D" parent="Points"]
+position = Vector2(0, 400)
+
+[node name="Point" type="Marker2D" parent="Points"]
+position = Vector2(-256, 408)
+
+[node name="Legs" type="Node2D" parent="."]
+
+[node name="FrontLeftLeg" parent="Legs" instance=ExtResource("2_s1uh7")]
+segment_length = 64
+reverse_elbow = true
+
+[node name="FrontRightLeg" parent="Legs" instance=ExtResource("2_s1uh7")]
+segment_length = 64
+
+[node name="BackLeftLeg" parent="Legs" instance=ExtResource("2_s1uh7")]
+segment_length = 48
+
+[node name="BackRightLeg" parent="Legs" instance=ExtResource("2_s1uh7")]
+segment_length = 48
+reverse_elbow = true
+
+[node name="Shape" type="Polygon2D" parent="."]
+
+[node name="Outline" type="Line2D" parent="."]
+closed = true
+width = 5.0
+joint_mode = 2
+antialiased = true
+
+[node name="Line" type="Line2D" parent="."]
+visible = false
+joint_mode = 2
+
+[node name="Eyes" type="Node2D" parent="."]
+scale = Vector2(0.03, 0.03)
+
+[node name="Eye1" type="Sprite2D" parent="Eyes"]
+position = Vector2(-1066.67, -1066.67)
+texture = ExtResource("2_vcpxw")
+
+[node name="Eye2" type="Sprite2D" parent="Eyes"]
+position = Vector2(-1066.67, 1066.67)
+texture = ExtResource("2_vcpxw")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
