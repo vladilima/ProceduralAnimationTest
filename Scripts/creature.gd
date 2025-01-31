@@ -15,8 +15,9 @@ var points : Array[Node]
 @export var FollowsMouse : bool = true
 @export_color_no_alpha var BodyColor = Color.BLACK
 @export var SegmentLength = 50
-@export_range(0, 30, 1) var PointAmount = 0
-@export var SegmentSize : Array[float] = []
+@export var CreatureWidth : Curve
+var PointAmount = 0
+var SegmentSize : Array[float] = []
 
 var target_position : Vector2
 
@@ -29,6 +30,12 @@ func _process(delta : float) -> void:
 
 ## Sets up Creature ##
 func initialize_creature() -> void:
+	PointAmount = CreatureWidth.bake_resolution - 2
+	SegmentSize.resize(CreatureWidth.bake_resolution)
+	
+	for i : float in CreatureWidth.bake_resolution:
+		SegmentSize[i] = CreatureWidth.sample(i/CreatureWidth.bake_resolution)
+	
 	# Add the points to the creature's body
 	for point in PointAmount:
 		$Points.add_child($Points/Point.duplicate(8))
@@ -90,12 +97,7 @@ func update_creature(delta : float) -> void:
 	var right_side_y = SegmentSize[0] * sin(anchor_direction + PI / 2)
 	var right_pos = anchor.position + Vector2(right_side_x, right_side_y)
 	
-	var tip_x = SegmentSize[0] / 2 * cos(anchor_direction - PI * 2)
-	var tip_y = SegmentSize[0] / 2 * sin(anchor_direction - PI * 2)
-	var tip_pos = anchor.position + Vector2(tip_x, tip_y)
-	
 	left.append(left_pos)
-	right.append(tip_pos)
 	right.append(right_pos)
 	
 	

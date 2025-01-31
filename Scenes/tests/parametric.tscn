@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dq462k448anlf"]
 
-[ext_resource type="Script" path="res://Scripts/parametric.gd" id="1_yq786"]
+[ext_resource type="Script" path="res://Scripts/tests/parametric.gd" id="1_yq786"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cvq77"]
 radius = 100.0

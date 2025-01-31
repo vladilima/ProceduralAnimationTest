@@ -1,13 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqrimdt5to733"]
+[gd_scene load_steps=4 format=3 uid="uid://dqrimdt5to733"]
 
 [ext_resource type="Script" path="res://Scripts/creature.gd" id="1_vg0jb"]
 [ext_resource type="Texture2D" uid="uid://bi5t22r2c2k15" path="res://Resources/eye.png" id="2_21osr"]
 
+[sub_resource type="Curve" id="Curve_5b20y"]
+min_value = 0.1
+max_value = 64.0
+bake_resolution = 125
+_data = [Vector2(0, 0), 0.0, 5384.44, 0, 0, Vector2(0.0215517, 45.011), 0.0, 0.0, 0, 0, Vector2(0.0775862, 64), 91.1804, -99.523, 0, 0, Vector2(0.172414, 47.6483), -312.053, -281.245, 0, 0, Vector2(0.415094, 64), -77.0501, 0.0, 0, 0, Vector2(0.669811, 24.6769), -15.2142, -7.09995, 0, 0, Vector2(0.877358, 19.0593), -38.1707, -50.9278, 0, 0, Vector2(1, 1.50439), -314.272, 0.0, 0, 0]
+point_count = 8
+
 [node name="Creature" type="Node2D"]
 script = ExtResource("1_vg0jb")
 BodyColor = Color(1, 0, 0, 1)
-PointAmount = 20
-SegmentSize = Array[float]([48.0, 64.0, 35.0, 35.0, 35.0, 35.0, 35.0, 35.0, 35.0, 32.0, 32.0, 29.0, 29.0, 26.0, 26.0, 23.0, 20.0, 17.0, 14.0, 11.0, 8.0, 5.0])
+SegmentLength = 10
+CreatureWidth = SubResource("Curve_5b20y")
 
 [node name="Points" type="Node" parent="."]
 
@@ -22,10 +29,12 @@ position = Vector2(-256, 408)
 [node name="Outline" type="Line2D" parent="."]
 closed = true
 width = 5.0
+joint_mode = 2
 antialiased = true
 
 [node name="Line" type="Line2D" parent="."]
 visible = false
+joint_mode = 2
 
 [node name="Eyes" type="Node2D" parent="."]
 scale = Vector2(0.03, 0.03)

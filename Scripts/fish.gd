@@ -28,12 +28,12 @@ func _process(delta : float) -> void:
 	update_creature(delta)
 	
 	## Moves and Rotates lateral fins ##
-	var FrontFinAngle = points[2].get_angle_to(points[1].position)
-	FrontFins.position = points[3].position
+	var FrontFinAngle = points[10].get_angle_to(points[9].position)
+	FrontFins.position = points[15].position
 	FrontFins.rotation = FrontFinAngle
 	
-	var BackFinAngle = points[6].get_angle_to(points[5].position)
-	BackFins.position = points[7].position
+	var BackFinAngle = points[24].get_angle_to(points[23].position)
+	BackFins.position = points[29].position
 	BackFins.rotation = BackFinAngle
 	
 	
@@ -59,8 +59,8 @@ func _process(delta : float) -> void:
 	
 	
 	## Moves and Rotates Tail Fin ##
-	var TailFinAngle = points[10].get_angle_to(points[9].position)
-	TailFin.position = points[10].position
+	var TailFinAngle = points[49].get_angle_to(points[48].position)
+	TailFin.position = points[49].position
 	TailFin.rotation = TailFinAngle
 	
 	var LeftTailFin = [0, 1, 2]
@@ -76,10 +76,26 @@ func _process(delta : float) -> void:
 	
 	
 	## Moves and Offsets Dorsal Fin
-	var DorsalFinPolygon : Array = [points[4].position, points[5].position, points[6].position, points[7].position, points[7].position, points[6].position, points[5].position, points[4].position]
-	DorsalFinPolygon[5].y += clamp(-TotalBodyCurvature, -20, 20)
-	DorsalFinPolygon[6].y += clamp(-TotalBodyCurvature, -20, 20)
+	var DorsalFinLength = 10
+	var DorsalFinLeftSide : Array
+	var DorsalFinRightSide : Array
+	var DorsalFinPolygon : Array
+	
+	var j = 0
+	for point in points:
+		if j > 16 and j < 30:
+			var point_position = point.position
+			DorsalFinLeftSide.append(point_position)
+			
+			var fin_offset : float = absi(absi(j - 23) - 6)
+			point_position.y += clamp((-TotalBodyCurvature / 4) * fin_offset, -30, 30)
+			
+			DorsalFinRightSide.append(point_position)
+		j += 1
+	
+	DorsalFinRightSide.reverse()
+	DorsalFinLeftSide.append_array(DorsalFinRightSide)
+	DorsalFinPolygon = DorsalFinLeftSide
 	
 	DorsalFinShape.set_polygon(DorsalFinPolygon)
 	$DorsalFin/Line2D.points = DorsalFinPolygon
-	
