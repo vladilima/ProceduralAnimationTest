@@ -31,6 +31,7 @@ The fish has a similar body to the snake, but its lateral fins rotate ahead of t
 The lizard has 4 Inverse Kinematics limbs attached to its body, giving the illusion that it is walking along the screen with its little paws.
 
 <img src=".\Repository\Lizard.gif" alt="Lizard Gif">
+
 > The paws are lowkey cute though
 
 Here is a showcase of the Inverse Kinematics limb working on its own, and how it can be customized.
