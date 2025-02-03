@@ -2,13 +2,13 @@ extends Creature
 
 ## Node References ##
 @onready var FrontLeftLeg = $Legs/FrontLeftLeg
-@onready var FrontRightLeg = $Legs/FrontRightLeg
 var front_left_target : Vector2 = Vector2.ZERO
+@onready var FrontRightLeg = $Legs/FrontRightLeg
 var front_right_target : Vector2 = Vector2.ZERO
 
 @onready var BackLeftLeg = $Legs/BackLeftLeg
-@onready var BackRightLeg = $Legs/BackRightLeg
 var back_left_target : Vector2 = Vector2.ZERO
+@onready var BackRightLeg = $Legs/BackRightLeg
 var back_right_target : Vector2 = Vector2.ZERO
 
 var Legs : Array[Node]
@@ -31,23 +31,11 @@ func _process(delta: float) -> void:
 	update_creature(delta)
 	
 	## Moves and Handles Legs ##
-	
 	# Front Leg Positions #
 	var FrontLegsAngle = points[20].get_angle_to(points[19].position)
 	var FrontLegPos = parametric_constructor(SegmentSize[20], FrontLegsAngle)
 	FrontLeftLeg.position = points[20].position - FrontLegPos / 2
 	FrontRightLeg.position = points[20].position + FrontLegPos / 2
-	
-	# Front Leg Targets
-	if FrontLeftLeg.TargetMarker.global_position.distance_to(points[20].global_position) > FrontLeftLeg.segment_length * 2.5:
-		front_left_target = points[14].global_position - FrontLegPos * 2
-	FrontLeftLeg.TargetMarker.global_position = front_left_target
-	FrontLeftLeg.look_at(front_left_target)
-
-	if FrontRightLeg.TargetMarker.global_position.distance_to(points[20].global_position) > FrontRightLeg.segment_length * 2.5:
-		front_right_target = points[14].global_position + FrontLegPos * 2
-	FrontRightLeg.TargetMarker.global_position = front_right_target
-	FrontRightLeg.look_at(front_right_target)
 	
 	
 	# Back Leg Positions #
@@ -56,16 +44,32 @@ func _process(delta: float) -> void:
 	BackLeftLeg.position = points[40].position - BackLegPos / 2
 	BackRightLeg.position = points[40].position + BackLegPos / 2
 	
-	# Back Leg Targets
-	if BackLeftLeg.TargetMarker.global_position.distance_to(points[40].global_position) > BackLeftLeg.segment_length * 3:
-		back_left_target = points[35].global_position - BackLegPos * 2
-	BackLeftLeg.TargetMarker.global_position = back_left_target
-	BackLeftLeg.look_at(back_left_target)
 	
-	if BackRightLeg.TargetMarker.global_position.distance_to(points[40].global_position) > BackRightLeg.segment_length * 3:
-		back_right_target = points[35].global_position + BackLegPos * 2
-	BackRightLeg.TargetMarker.global_position = back_right_target
-	BackRightLeg.look_at(back_right_target)
+	# Leg Targets
+	var i = 0
+	for Leg : Node2D in Legs:
+		# Offset for each side
+		var neg = -1
+		if i % 2 == 0:
+			neg = 1
+		
+		# Front Legs
+		if i < 2:
+			if Leg.target_pos.distance_to(points[20].global_position) > Leg.segment_length * 2.5:
+				var tween : Tween = get_tree().create_tween()
+				var new_target_pos = points[14].global_position - FrontLegPos * 2 * neg
+				tween.tween_property(Leg, "target_pos", new_target_pos, .1)
+		
+		# Back Legs
+		if i >= 2:
+			if Leg.target_pos.distance_to(points[40].global_position) > Leg.segment_length * 3:
+				var tween : Tween = get_tree().create_tween()
+				var new_target_pos = points[35].global_position - BackLegPos * 2 * neg
+				tween.tween_property(Leg, "target_pos", new_target_pos, .1)
+		
+		Leg.look_at(Leg.target_pos)
+		
+		i += 1
 
 
 # Returns Vector2 result of parametric equation

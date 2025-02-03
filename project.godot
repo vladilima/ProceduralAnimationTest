@@ -15,6 +15,10 @@ run/main_scene="res://Scenes/world.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.png"
 
+[debug]
+
+settings/stdout/print_fps=true
+
 [editor]
 
 movie_writer/movie_file="C:/Users/Pichau/Desktop/Outros/GodotEngine/procedural-animation-test/test.avi"

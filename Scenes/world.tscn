@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d31c5gtowpsxr"]
 
-[ext_resource type="PackedScene" uid="uid://b0t4edwdkw6ty" path="res://Scenes/lizard.tscn" id="1_3glmd"]
+[ext_resource type="PackedScene" uid="uid://bscn8bo3ud3s1" path="res://Scenes/fish.tscn" id="2_mscxe"]
 
 [node name="World" type="Node2D"]
 
@@ -8,21 +8,21 @@
 position = Vector2(1088, 600)
 zoom = Vector2(0.5, 0.5)
 
-[node name="Lizard" parent="." instance=ExtResource("1_3glmd")]
+[node name="Fish" parent="." instance=ExtResource("2_mscxe")]
 FollowsMouse = false
 
-[node name="Lizard2" parent="." instance=ExtResource("1_3glmd")]
+[node name="Fish2" parent="." instance=ExtResource("2_mscxe")]
 FollowsMouse = false
-BodyColor = Color(0.680131, 0.261436, 0.0226739, 1)
+BodyColor = Color(0, 0.457149, 0.416596, 1)
 
-[node name="Lizard3" parent="." instance=ExtResource("1_3glmd")]
+[node name="Fish3" parent="." instance=ExtResource("2_mscxe")]
 FollowsMouse = false
-BodyColor = Color(0.440227, 0.347655, 0.648689, 1)
+BodyColor = Color(0.238956, 0.451241, 0.241173, 1)
 
-[node name="Lizard4" parent="." instance=ExtResource("1_3glmd")]
+[node name="Fish4" parent="." instance=ExtResource("2_mscxe")]
 FollowsMouse = false
-BodyColor = Color(0.0804813, 0.46934, 0.482219, 1)
+BodyColor = Color(0.697779, 0.125758, 0.320046, 1)
 
-[node name="Lizard5" parent="." instance=ExtResource("1_3glmd")]
+[node name="Fish5" parent="." instance=ExtResource("2_mscxe")]
 FollowsMouse = false
-BodyColor = Color(0.703171, 0.0608867, 0.553387, 1)
+BodyColor = Color(0.600333, 0.297071, 0.108483, 1)
